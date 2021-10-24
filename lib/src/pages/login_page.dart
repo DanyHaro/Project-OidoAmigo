@@ -15,9 +15,10 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: 150.0 ,
+                height: 105.0,
               ),
-              Image(
+              FadeInImage(
+                  placeholder: AssetImage('assets/jar-loading.gif'),
                   image: NetworkImage(
                       'https://www.upeu.edu.pe/wp-content/uploads/2021/05/oido-AMIGO-LOGOTIPO1-300x99.png')),
               SizedBox(
@@ -31,12 +32,16 @@ class LoginPage extends StatelessWidget {
               SizedBox(
                 height: 40.0,
               ),
-              Container(
-                height: 190.0 ,
-                child: Image(
-                  image: NetworkImage('https://redpsi.es/wp-content/uploads/2018/09/terapia-psicol%C3%B3gica.png')
-                )
+              botonIniciarSesion(context),
+              SizedBox(
+                height: 8.0 ,
               ),
+              Container(
+                  height: 170.0,
+                  child: FadeInImage(
+                      placeholder: AssetImage('assets/jar-loading.gif'),
+                      image: NetworkImage(
+                          'https://redpsi.es/wp-content/uploads/2018/09/terapia-psicol%C3%B3gica.png'))),
             ],
           ),
         ),
@@ -73,5 +78,32 @@ class LoginPage extends StatelessWidget {
         suffixIcon: Icon(Icons.password),
       ),
     ));
+  }
+
+  Widget botonIniciarSesion(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+      child: Container(
+        width: 200.0,
+        child: TextButton(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Iniciar Sesión",
+                style: TextStyle(color: Colors.white),
+              ),
+              Icon(Icons.login, color: Colors.white,)
+            ],
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context,'/derivador');
+          },
+          style: TextButton.styleFrom(
+            textStyle: const TextStyle(fontSize: 18),
+          ),
+        ),
+        color: Color.fromRGBO(24, 150, 156, 1),
+      ),
+    );
   }
 }

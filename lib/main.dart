@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:proyecto_integrador_mobil/src/pages/principal_page.dart';
 import 'package:proyecto_integrador_mobil/src/routes/route.dart';
  

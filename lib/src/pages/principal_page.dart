@@ -21,7 +21,10 @@ class _PrincipalPageState extends State<PrincipalPage> {
           child: Column(
             children: [
               Container(
-                child:  Image(image: NetworkImage('https://www.upeu.edu.pe/wp-content/uploads/2021/05/oido-AMIGO-LOGOTIPO1-300x99.png')),
+                child:  FadeInImage(
+                  placeholder: AssetImage('assets/jar-loading.gif'),
+                  image: NetworkImage('https://www.upeu.edu.pe/wp-content/uploads/2021/05/oido-AMIGO-LOGOTIPO1-300x99.png')
+                ),
                 margin: EdgeInsetsDirectional.fromSTEB(0, 50.0, 50.0, 50.0),
               ),
               Text.rich(
@@ -32,7 +35,10 @@ class _PrincipalPageState extends State<PrincipalPage> {
                 height: 35.0,
               ),
               ClipRRect(
-                child: Image(image: NetworkImage("https://img.freepik.com/vector-gratis/sesion-individual-psicologo-color-plano-tratamiento-problemas-salud-mental-terapia-psicologica-personajes-rostro-dibujos-animados-2d-sala-consulta-fondo_151150-2890.jpg?size=626&ext=jpg")),
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/jar-loading.gif'),
+                  image: NetworkImage("https://img.freepik.com/vector-gratis/sesion-individual-psicologo-color-plano-tratamiento-problemas-salud-mental-terapia-psicologica-personajes-rostro-dibujos-animados-2d-sala-consulta-fondo_151150-2890.jpg?size=626&ext=jpg")
+                ),
                 borderRadius: BorderRadius.all(Radius.circular(150.0))
               ),
               SizedBox(
@@ -65,7 +71,7 @@ class _PrincipalPageState extends State<PrincipalPage> {
                       child: TextButton(
                         child: Text("Soy paciente", style: TextStyle(color: Colors.white),),
                         onPressed: (){
-                          
+                          Navigator.pushNamed(context, '/codigopaciente');
                         },
                         style: TextButton.styleFrom(
                           textStyle: const TextStyle(fontSize: 20),

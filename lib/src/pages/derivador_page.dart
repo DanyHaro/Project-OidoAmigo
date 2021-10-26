@@ -25,16 +25,7 @@ class _DerivadorPageState extends State<DerivadorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Colors.white,
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: (){
-
-            }, 
-            icon: estado ? icono : Icon(Icons.account_balance_outlined)
-          )
-        ],
+        elevation: 8,
         centerTitle: true,
         title: Text("FICHAS DE PACIENTES", style: TextStyle(color: Color.fromRGBO(142, 219, 255, 1)),),
       ),

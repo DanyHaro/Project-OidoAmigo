@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:animate_do/animate_do.dart';
+
 
 class DerivadorPage extends StatefulWidget {
   // DerivadorPage({Key? key}) : super(key: key);
@@ -11,24 +13,27 @@ class DerivadorPage extends StatefulWidget {
 }
 
 class _DerivadorPageState extends State<DerivadorPage> {
-
   //CREAMOS UNA INSTANCIA DE LA CLASE CON GETX
   Controlador instanciaControlador = Get.put(Controlador());
 
   ///////////// VARIABLES
   List<String> _filtros = ['Grave', 'Leve', 'Recientes'];
-  Icon icono = Icon(Icons.lock_clock_outlined);
-  bool estado = false;
+  bool estado = true;
   // String _opcionSeleccionada = 'Grave';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 8,
+      appBar: estado ? AppBar(
+        backgroundColor: Color.fromRGBO(117, 206, 209, 1),
+        elevation: 0,
         centerTitle: true,
-        title: Text("FICHAS DE PACIENTES", style: TextStyle(color: Color.fromRGBO(142, 219, 255, 1)),),
-      ),
+        title: Text(
+          "FICHAS",
+          style: TextStyle(color: Color.fromRGBO(250, 250, 250 , 1)),
+        ),
+      ) : newappBar(context),
+
       //REEMPLAZAR EL ListView por ListView.builder cuando se tenga data real.
       body: Column(
         children: [
@@ -87,12 +92,15 @@ class _DerivadorPageState extends State<DerivadorPage> {
                   ),
                   // InkWell puede ser reemplazado por un ElevatedButton para tener el metodo onLongPress con su animación
                   InkWell(
-                    onTap: () {
+                    onLongPress: () {
                       log("MANTENIENDO");
-                      Navigator.pushNamed(context, '/personalAsignar');
+                      setState(() {    
+                        estado = false;
+                      });
+                      // Navigator.pushNamed(context, '/personalAsignar');
                       // estado = true;
                       // setState(() {
-                        
+
                       // });
                     },
                     child: Card(
@@ -121,18 +129,9 @@ class _DerivadorPageState extends State<DerivadorPage> {
       /////// BOTONES DE NAVEGACIÓN
 
       bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.description), 
-          label: 'Fichas'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person), 
-          label: 'Psicologos'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.backup), 
-          label: 'Mapas'
-        ),
+        BottomNavigationBarItem(icon: Icon(Icons.description), label: 'Fichas'),
+        BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Psicologos'),
+        BottomNavigationBarItem(icon: Icon(Icons.backup), label: 'Mapas'),
       ]),
     );
   }
@@ -150,10 +149,13 @@ class _DerivadorPageState extends State<DerivadorPage> {
 
     return listadrop;
   }
+
+  ////////////////// WIDGET CON EVENTO /////
+
 }
 
+//// CLASE CON GETX
 class Controlador extends GetxController {
-  
   Card tarjetas() {
     return Card(
       elevation: 10.0,
@@ -170,5 +172,36 @@ class Controlador extends GetxController {
       ),
     );
   }
-  
+}
+
+PreferredSizeWidget newappBar(BuildContext context) {
+  return AppBar(
+    backgroundColor: Color.fromRGBO(35, 145, 148, 1),
+    actions: [
+      FadeInDown(
+        duration: Duration(milliseconds: 190),
+        child: IconButton(
+          onPressed: (){
+            Navigator.pushNamed(context, '/personalAsignar');
+          },
+          icon: Icon(Icons.redo_rounded)
+        ),
+      ),
+      FadeInDown(
+        duration: Duration(milliseconds: 190),
+        child: IconButton(
+          onPressed: (){
+      
+          },
+          icon: Icon(Icons.home)
+        ),
+      ),
+    ],
+    elevation: 8,
+    centerTitle: true,
+    title: Text(
+      "FICHAS",
+      style: TextStyle(color: Color.fromRGBO(250, 250, 250, 1)),
+    ),
+  );
 }
